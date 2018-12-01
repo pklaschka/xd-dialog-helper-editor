@@ -3,6 +3,6 @@ module.exports = {
 
   pwa: {
     name: 'xd-dialog-helper WYSIWYG',
-    themeColor: '#824A4A'
+    themeColor: '#FF2BC2'
   }
 };
