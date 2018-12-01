@@ -5,4 +5,4 @@ module.exports = {
     name: 'xd-dialog-helper WYSIWYG',
     themeColor: '#824A4A'
   }
-}
+};

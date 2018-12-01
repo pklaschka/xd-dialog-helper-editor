@@ -5,19 +5,27 @@
             <form class="spectrum-Form">
                 <div class="spectrum-Form-item">
                     <label class="spectrum-FieldLabel">Dialog ID:</label>
-                    <input type="text" v-model="id" class="spectrum-Textfield">
+                    <label>
+                        <input type="text" v-model="id" class="spectrum-Textfield">
+                    </label>
                 </div>
                 <div class="spectrum-Form-item">
                     <label class="spectrum-FieldLabel">Dialog title:</label>
-                    <input type="text" v-model="title" class="spectrum-Textfield">
+                    <label>
+                        <input type="text" v-model="title" class="spectrum-Textfield">
+                    </label>
                 </div>
                 <div class="spectrum-Form-item">
                     <label class="spectrum-FieldLabel">Ok button text:</label>
-                    <input type="text" v-model="okButtonText" class="spectrum-Textfield">
+                    <label>
+                        <input type="text" v-model="okButtonText" class="spectrum-Textfield">
+                    </label>
                 </div>
                 <div class="spectrum-Form-item">
                     <label class="spectrum-FieldLabel">Cancel button text:</label>
-                    <input type="text" v-model="cancelButtonText" class="spectrum-Textfield">
+                    <label>
+                        <input type="text" v-model="cancelButtonText" class="spectrum-Textfield">
+                    </label>
                 </div>
             </form>
             <br>
@@ -69,24 +77,30 @@
                         <div v-if="element.type === 2" class="width100">
 
                             <label :for="element.id" class="spectrum-FieldLabel">{{element.label}}</label>
-                            <input type="text" :placeholder="element.label" :name="element.id" :id="element.id"
-                                   :value="element.value ||''" class="spectrum-Textfield">
+                            <label>
+                                <input type="text" :placeholder="element.label" :name="element.id" :id="element.id"
+                                       :value="element.value ||''" class="spectrum-Textfield">
+                            </label>
                         </div>
                         <div v-if="element.type === 3" class="width100">
                             <label :for="element.id" class="spectrum-FieldLabel">{{element.label}}</label>
-                            <textarea :placeholder="element.label" :name="element.id" :id="element.id"
-                                      class="spectrum-Textfield spectrum-Textfield--multiline" v-model="element.value">
-                            </textarea>
+                            <label>
+<textarea :placeholder="element.label" :name="element.id" :id="element.id"
+          class="spectrum-Textfield spectrum-Textfield--multiline" v-model="element.value">
+</textarea>
+                            </label>
                         </div>
                         <div v-if="element.type === 4" class="width100 selectWrapper">
                             <label :for="element.id" class="spectrum-FieldLabel">{{element.label}}</label>
                             <div class="selectWrapper">
-                                <select class="spectrum-FieldButton spectrum-Dropdown-trigger" :value="element.value"
-                                        :id="element.id" :name="element.id">
-                                    <option v-for="(element,index) in element.options" :key="index"
-                                            :value="element.value">{{element.label}}
-                                    </option>
-                                </select>
+                                <label>
+                                    <select class="spectrum-FieldButton spectrum-Dropdown-trigger" :value="element.value"
+                                            :id="element.id" :name="element.id">
+                                        <option v-for="(element,index) in element.options" :key="index"
+                                                :value="element.value">{{element.label}}
+                                        </option>
+                                    </select>
+                                </label>
                                 <svg class="spectrum-Icon spectrum-UIIcon-ChevronDownMedium spectrum-Dropdown-icon"
                                      focusable="false" aria-hidden="true">
                                     <use xlink:href="#spectrum-css-icon-ChevronDownMedium"></use>
@@ -121,11 +135,11 @@
                             <span class="spectrum-Checkbox-box">
     <svg class="spectrum-Icon spectrum-UIIcon-CheckmarkSmall spectrum-Checkbox-checkmark" focusable="false"
          aria-hidden="true">
-      <use xlink:href="#spectrum-css-icon-CheckmarkSmall"/>
+      <use xlink:href="#spectrum-css-icon-CheckmarkSmall"></use>
     </svg>
     <svg class="spectrum-Icon spectrum-UIIcon-DashSmall spectrum-Checkbox-partialCheckmark" focusable="false"
          aria-hidden="true">
-      <use xlink:href="#spectrum-css-icon-DashSmall"/>
+      <use xlink:href="#spectrum-css-icon-DashSmall"></use>
     </svg>
   </span>
                             <span class="spectrum-Checkbox-label">{{element.label}}</span>
@@ -139,12 +153,12 @@
             </div>
         </main>
 
-        <div id="codeDialog" class="spectrum-Dialog spectrum-Dialog--alert is-open">
+        <div id="codeDialog" class="spectrum-Dialog spectrum-Dialog--alert">
             <div class="spectrum-Dialog-header">
                 <h2 class="spectrum-Dialog-title">The CSS code</h2>
             </div>
             <div class="spectrum-Dialog-content">
-                <pre onkeydown="event.preventDefault" onkeyup="event.preventDefault()" onkeypress="event.preventDefault()" contenteditable="true" onclick="requestAnimationFrame(()=>document.execCommand('selectall',null,false))"><code>{{code}}</code></pre>
+                <pre onkeyup="event.preventDefault()" onkeypress="event.preventDefault()" contenteditable="true" onclick="requestAnimationFrame(()=>document.execCommand('selectall',null))"><code>{{code}}</code></pre>
             </div>
             <div class="spectrum-Dialog-footer">
                 <button class="spectrum-Button spectrum-Button--secondary" onclick="document.getElementById('codeDialog').className='spectrum-Dialog spectrum-Dialog--alert'">Close</button>
@@ -239,64 +253,19 @@
                         type: DialogHelper.HR,
                         id: 'myHR'
                     },
-                    {
-                        type: DialogHelper.TEXT,
-                        id: 'text',
-                        label: 'Please do something in this form...'
-                    },
-                    {
-                        type: DialogHelper.TEXT_INPUT,
-                        id: 'userName',
-                        label: 'Your Name:'
-                    },
-                    {
-                        type: DialogHelper.CHECKBOX,
-                        id: 'checkbox',
-                        label: 'MyCheck'
-                    },
-                    {
-                        type: DialogHelper.HEADER,
-                        id: 'header',
-                        label: 'Another section'
-                    },
-                    {
-                        type: DialogHelper.SLIDER,
-                        id: 'slider',
-                        label: 'A slider for something',
-                        htmlAttributes: {
-                            min: 0,
-                            max: 200
-                        },
-                        unit: 'px',
-                        value: 10
-                    },
-                    {
-                        type: DialogHelper.TEXT_AREA,
-                        id: 'textArea',
-                        label: 'Message'
-                    },
-                    {
-                        type: DialogHelper.SELECT,
-                        id: 'selectBox',
-                        label: 'Message',
-                        options: [
-                            {value: 'opt1', label: 'Option 1'},
-                            {value: 'opt2', label: 'Option 2'},
-                        ]
-                    },
                 ]
             }
         },
         computed: {
             code: function() {
-                return beautify(`const dialogHelper = require('xd-dialog-helper');
+                return beautify(`const DialogHelper = require('xd-dialog-helper');
 
 async function show${this.id}() {
     try {
-        const results = dialogHelper.showDialog(${JSON.stringify(this.id)}, ${JSON.stringify(this.title)}, ${JSON.stringify(this.contents)}, [
+        const results = DialogHelper.showDialog(${JSON.stringify(this.id)}, ${JSON.stringify(this.title)}, ${JSON.stringify(this.contents)}, {
             okButtonText: ${JSON.stringify(this.okButtonText)},
             cancelButtonText: ${JSON.stringify(this.cancelButtonText)}
-        ]);
+        });
 
         // Do something with the results here...
     } catch (e) {
@@ -423,13 +392,16 @@ module.exports = show${this.id};`, {});
                 position: absolute;
                 margin: 0;
                 width: 360px;
-                box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
             }
 
             a {
                 display: block;
             }
         }
+    }
+
+    .spectrum-Dialog {
+        box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
     }
 
     textarea {
