@@ -1,4 +1,4 @@
-# vue-dialog-helper-geneartor
+# vue-dialog-helper-editor
 
 ## Project setup
 ```
