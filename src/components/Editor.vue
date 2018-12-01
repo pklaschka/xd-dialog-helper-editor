@@ -40,6 +40,34 @@
                 </label>
             </div>
             <div class="spectrum-Form-item" v-if="inList(element.type, [4])">
+                <label>Options:</label>
+                <div class="spectrum-Well" v-for="(option,optionIndex) in element.options" :key="optionIndex">
+                    <div class="spectrum-ActionButton" @click="deleteOption(optionIndex)">
+                            <span class="spectrum-ActionButton-label">
+                                X
+                            </span>
+                    </div>
+                    <form class="spectrum-Form">
+                        <div class="spectrum-Form-item">
+                            <label class="spectrum-FieldLabel">Value:</label>
+                            <label>
+                                <input type="text" v-model="option.value" class="spectrum-Textfield">
+                            </label>
+                        </div>
+                        <div class="spectrum-Form-item">
+                            <label class="spectrum-FieldLabel">Label:</label>
+                            <label>
+                                <input type="text" v-model="option.label" class="spectrum-Textfield">
+                            </label>
+                        </div>
+                    </form>
+                </div>
+
+                <p class="spectrum-Link" @click="element.options.push({label: 'Label', value: 'value'})">
+                    Add element...
+                </p>
+            </div>
+            <div class="spectrum-Form-item" v-if="inList(element.type, [4])">
                 <div v-if="element.type === 4" class="width100 selectWrapper">
                     <label :for="element.id + '-editor'" class="spectrum-FieldLabel">Initial value:</label>
                     <div class="selectWrapper">
@@ -142,7 +170,10 @@
                 }
             },
             deleteElement() {
-                console.log(this.array.pop());
+                this.array.splice(this.index, 1);
+            },
+            deleteOption(index) {
+                this.element.options.splice(index, 1);
             },
             inList(element, array) {
                 for (let arrayElement of array) {
