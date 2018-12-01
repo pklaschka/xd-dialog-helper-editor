@@ -85,12 +85,12 @@
                                 </div>
                             </div>
                             <div class="spectrum-Slider-controls">
-                                <div class="spectrum-Slider-track" style="width: 14.4531%;"></div>
-                                <div class="spectrum-Slider-handle" style="left: 14.4531%;">
-                                    <input type="range" class="spectrum-Slider-input" value="14" step="2" min="10"
-                                           max="20" id="spectrum-Slider-input-8">
+                                <div class="spectrum-Slider-track" v-bind:style="{ width: (element.value/element.htmlAttributes.max*100) + '%'}"></div>
+                                <div class="spectrum-Slider-handle" v-bind:style="{ left: (element.value/element.htmlAttributes.max*100) + '%'}">
+                                    <input type="range" class="spectrum-Slider-input" :value="element.value" :min="element.htmlAttributes.min"
+                                           :max="element.htmlAttributes.max" id="spectrum-Slider-input-8">
                                 </div>
-                                <div class="spectrum-Slider-track" style="width: 85.5469%;"></div>
+                                <div class="spectrum-Slider-track" v-bind:style="{ width: (100 - element.value/element.htmlAttributes.max*100) + '%'}"></div>
                             </div>
                         </div>
                         <hr class="spectrum-Rule spectrum-Rule--medium" v-if="element.type === 7">
@@ -297,9 +297,13 @@
         flex-direction: row;
 
         > aside {
-            * {
+            > *:not(.spectrum-Checkbox),
+            :not(.spectrum-Checkbox) > *:not(svg) {
                 width: 100%;
             }
+
+
+
 
             padding: 40px;
 
@@ -318,6 +322,15 @@
             position: relative;
             width: 100%;
 
+            .spectrum-Dialog, .spectrum-Dialog.is-open {
+                position: absolute;
+                //transform: none;
+                margin: 0;
+                width: 360px;
+                box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+                //left: unset;
+            }
+
             a {
                 display: block;
             }
@@ -326,15 +339,6 @@
 
     textarea {
         resize: vertical;
-    }
-
-    .spectrum-Dialog, .spectrum-Dialog.is-open {
-        position: absolute;
-        //transform: none;
-        margin: 0;
-        width: 360px;
-        box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
-        //left: unset;
     }
 
     .contentElement + .contentElement {
