@@ -312,10 +312,9 @@ module.exports = show${this.id};`, {});
                     });
                 } else if (type === 'TEXT_AREA') {
                     this.contents.push({
-                        type: DialogHelper.CHECKBOX,
+                        type: DialogHelper.TEXT_AREA,
                         id: 'myTextInput',
                         label: 'Message',
-                        value: true
                     });
                 } else if (type === 'SELECT') {
                     this.contents.push({
