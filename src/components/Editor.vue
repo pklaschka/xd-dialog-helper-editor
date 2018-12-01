@@ -16,31 +16,44 @@
             <!-- ID: -->
             <div class="spectrum-Form-item">
                 <label class="spectrum-FieldLabel">ID:</label>
-                <input type="text" v-model="element.id" class="spectrum-Textfield">
+                <label>
+                    <input type="text" v-model="element.id" class="spectrum-Textfield">
+                </label>
             </div>
             <!-- Label: -->
             <div class="spectrum-Form-item" v-if="element.type !== 7">
                 <label class="spectrum-FieldLabel">{{element.type === 0 || element.type === 1 ? 'Text' :
                     'Label'}}:</label>
-                <textarea v-if="element.type === 1" type="text" v-model="element.label"
-                          class="spectrum-Textfield spectrum-Textfield--multiline">
-                </textarea>
-                <input v-else type="text" v-model="element.label" class="spectrum-Textfield">
+                <label>
+<textarea v-if="element.type === 1" v-model="element.label"
+          class="spectrum-Textfield spectrum-Textfield--multiline"></textarea>
+                </label>
+                <label>
+                    <input v-if="element.type !== 1" type="text" v-model="element.label" class="spectrum-Textfield">
+                </label>
             </div>
             <!-- Value: -->
             <div class="spectrum-Form-item" v-if="inList(element.type, [2])">
                 <label class="spectrum-FieldLabel">Initial value:</label>
-                <input type="text" v-model="element.value" class="spectrum-Textfield">
+                <label>
+                    <input type="text" v-model="element.value" class="spectrum-Textfield">
+                </label>
             </div>
             <div class="spectrum-Form-item" v-if="inList(element.type, [4])">
                 <div v-if="element.type === 4" class="width100 selectWrapper">
                     <label :for="element.id + '-editor'" class="spectrum-FieldLabel">Initial value:</label>
                     <div class="selectWrapper">
-                        <select class="spectrum-FieldButton spectrum-Dropdown-trigger" v-model="element.value" :id="element.id + '-editor'" :name="element.id + '-editor'">
-                            <option value="undefined">-- none set --</option>
-                            <option v-for="(element,index) in element.options" :key="index" :value="element.value">{{element.label}}</option>
-                        </select>
-                        <svg class="spectrum-Icon spectrum-UIIcon-ChevronDownMedium spectrum-Dropdown-icon" focusable="false" aria-hidden="true">
+                        <label>
+                            <select class="spectrum-FieldButton spectrum-Dropdown-trigger" v-model="element.value"
+                                    :id="element.id + '-editor'" :name="element.id + '-editor'">
+                                <option value="undefined">-- none set --</option>
+                                <option v-for="(element,index) in element.options" :key="index" :value="element.value">
+                                    {{element.label}}
+                                </option>
+                            </select>
+                        </label>
+                        <svg class="spectrum-Icon spectrum-UIIcon-ChevronDownMedium spectrum-Dropdown-icon"
+                             focusable="false" aria-hidden="true">
                             <use xlink:href="#spectrum-css-icon-ChevronDownMedium"></use>
                         </svg>
                     </div>
@@ -48,11 +61,16 @@
             </div>
             <div class="spectrum-Form-item" v-if="inList(element.type, [5,6])">
                 <label class="spectrum-FieldLabel">Initial value:</label>
-                <input v-model="element.value" type="number" class="spectrum-Textfield">
+                <label>
+                    <input v-model="element.value" type="number" class="spectrum-Textfield">
+                </label>
             </div>
             <div class="spectrum-Form-item" v-if="inList(element.type, [3])">
                 <label class="spectrum-FieldLabel">Initial value:</label>
-                <textarea v-model="element.value" class="spectrum-Textfield spectrum-Textfield--multiline"></textarea>
+                <label>
+                    <textarea v-model="element.value"
+                              class="spectrum-Textfield spectrum-Textfield--multiline"></textarea>
+                </label>
             </div>
             <div class="spectrum-Form-item" v-else-if="inList(element.type, [8])">
                 <label class="spectrum-Checkbox">
@@ -61,11 +79,11 @@
                     <span class="spectrum-Checkbox-box">
     <svg class="spectrum-Icon spectrum-UIIcon-CheckmarkSmall spectrum-Checkbox-checkmark" focusable="false"
          aria-hidden="true">
-      <use xlink:href="#spectrum-css-icon-CheckmarkSmall"/>
+      <use xlink:href="#spectrum-css-icon-CheckmarkSmall"></use>
     </svg>
     <svg class="spectrum-Icon spectrum-UIIcon-DashSmall spectrum-Checkbox-partialCheckmark" focusable="false"
          aria-hidden="true">
-      <use xlink:href="#spectrum-css-icon-DashSmall"/>
+      <use xlink:href="#spectrum-css-icon-DashSmall"></use>
     </svg>
   </span>
                     <span class="spectrum-Checkbox-label">Initially set</span>
@@ -74,15 +92,21 @@
             <!-- Unit, Min & Max: -->
             <div class="spectrum-Form-item" v-if="inList(element.type, [5,6])">
                 <label class="spectrum-FieldLabel">Minimum value:</label>
-                <input v-model="element.htmlAttributes.min" type="number" class="spectrum-Textfield">
+                <label>
+                    <input v-model="element.htmlAttributes.min" type="number" class="spectrum-Textfield">
+                </label>
             </div>
             <div class="spectrum-Form-item" v-if="inList(element.type, [5,6])">
                 <label class="spectrum-FieldLabel">Maximum value:</label>
-                <input v-model="element.htmlAttributes.max" type="number" class="spectrum-Textfield">
+                <label>
+                    <input v-model="element.htmlAttributes.max" type="number" class="spectrum-Textfield">
+                </label>
             </div>
             <div class="spectrum-Form-item" v-if="inList(element.type, [5,6])">
                 <label class="spectrum-FieldLabel">Unit name:</label>
-                <input v-model="element.unit" type="text" class="spectrum-Textfield">
+                <label>
+                    <input v-model="element.unit" type="text" class="spectrum-Textfield">
+                </label>
             </div>
         </form>
     </div>

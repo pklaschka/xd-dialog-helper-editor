@@ -29,7 +29,8 @@
                 </div>
             </form>
             <br>
-            <button class="spectrum-Button spectrum-Button--cta"  onclick="document.getElementById('codeDialog').className='spectrum-Dialog spectrum-Dialog--alert is-open'">
+            <button class="spectrum-Button spectrum-Button--cta"
+                    onclick="document.getElementById('codeDialog').className='spectrum-Dialog spectrum-Dialog--alert is-open'">
                 <span class="spectrum-Button-label">Generate code</span>
             </button>
         </aside>
@@ -94,7 +95,8 @@
                             <label :for="element.id" class="spectrum-FieldLabel">{{element.label}}</label>
                             <div class="selectWrapper">
                                 <label>
-                                    <select class="spectrum-FieldButton spectrum-Dropdown-trigger" :value="element.value"
+                                    <select class="spectrum-FieldButton spectrum-Dropdown-trigger"
+                                            :value="element.value"
                                             :id="element.id" :name="element.id">
                                         <option v-for="(element,index) in element.options" :key="index"
                                                 :value="element.value">{{element.label}}
@@ -158,10 +160,14 @@
                 <h2 class="spectrum-Dialog-title">The CSS code</h2>
             </div>
             <div class="spectrum-Dialog-content">
-                <pre onkeyup="event.preventDefault()" onkeypress="event.preventDefault()" contenteditable="true" onclick="requestAnimationFrame(()=>document.execCommand('selectall',null))"><code>{{code}}</code></pre>
+                <pre onkeyup="event.preventDefault()" onkeypress="event.preventDefault()" contenteditable="true"
+                     onclick="requestAnimationFrame(()=>document.execCommand('selectall',null))"><code>{{code}}</code></pre>
             </div>
             <div class="spectrum-Dialog-footer">
-                <button class="spectrum-Button spectrum-Button--secondary" onclick="document.getElementById('codeDialog').className='spectrum-Dialog spectrum-Dialog--alert'">Close</button>
+                <button class="spectrum-Button spectrum-Button--secondary"
+                        onclick="document.getElementById('codeDialog').className='spectrum-Dialog spectrum-Dialog--alert'">
+                    Close
+                </button>
             </div>
         </div>
     </div>
@@ -257,7 +263,7 @@
             }
         },
         computed: {
-            code: function() {
+            code: function () {
                 return beautify(`const DialogHelper = require('xd-dialog-helper');
 
 async function show${this.id}() {
@@ -290,7 +296,7 @@ module.exports = show${this.id};`, {});
                         id: 'header-' + Date.now(),
                         label: 'New section'
                     });
-                }  else if (type === 'TEXT_INPUT') {
+                } else if (type === 'TEXT_INPUT') {
                     this.contents.push({
                         type: DialogHelper.TEXT_INPUT,
                         id: 'input-' + Date.now(),
