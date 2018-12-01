@@ -4,6 +4,10 @@
             <h1>xd-dialog-helper WYSIWYG-Generator</h1>
             <form class="spectrum-Form">
                 <div class="spectrum-Form-item">
+                    <label class="spectrum-FieldLabel">Dialog ID:</label>
+                    <input type="text" v-model="id" class="spectrum-Textfield">
+                </div>
+                <div class="spectrum-Form-item">
                     <label class="spectrum-FieldLabel">Dialog title:</label>
                     <input type="text" v-model="title" class="spectrum-Textfield">
                 </div>
@@ -17,7 +21,7 @@
                 </div>
             </form>
             <br>
-            <button class="spectrum-Button spectrum-Button--cta">
+            <button class="spectrum-Button spectrum-Button--cta"  onclick="document.getElementById('codeDialog').className='spectrum-Dialog spectrum-Dialog--alert is-open'">
                 <span class="spectrum-Button-label">Generate code</span>
             </button>
         </aside>
@@ -25,20 +29,29 @@
             <editor v-for="(element, index) in contents" :key="index" :element="element" :index="index"
                     :array="contents"></editor>
 
-            <div class="spectrum-QuickActions spectrum-QuickActions--textOnly is-open">
-                <button class="spectrum-ActionButton spectrum-ActionButton--quiet" @click="insertItem('HEADER')">
-                    <span class="spectrum-ActionButton-label">Header</span>
-                </button>
-                <button class="spectrum-ActionButton spectrum-ActionButton--quiet" @click="insertItem('TEXT')">
-                    <span class="spectrum-ActionButton-label">Text</span>
-                </button>
-                <button class="spectrum-ActionButton spectrum-ActionButton--quiet" @click="insertItem('TEXT_INPUT')">
-                    <span class="spectrum-ActionButton-label">Text field</span>
-                </button>
-                <button class="spectrum-ActionButton spectrum-ActionButton--quiet" @click="insertItem('CHECKBOX')">
-                    <span class="spectrum-ActionButton-label">Checkbox</span>
-                </button>
-            </div>
+            <h2>Append element:</h2>
+
+            <button class="spectrum-ActionButton" @click="insertItem('HEADER')">
+                <span class="spectrum-ActionButton-label">Headline</span>
+            </button>
+            <button class="spectrum-ActionButton" @click="insertItem('TEXT')">
+                <span class="spectrum-ActionButton-label">Text</span>
+            </button>
+            <button class="spectrum-ActionButton" @click="insertItem('TEXT_INPUT')">
+                <span class="spectrum-ActionButton-label">Text field</span>
+            </button>
+            <button class="spectrum-ActionButton" @click="insertItem('TEXT_AREA')">
+                <span class="spectrum-ActionButton-label">Text area</span>
+            </button>
+            <button class="spectrum-ActionButton" @click="insertItem('CHECKBOX')">
+                <span class="spectrum-ActionButton-label">Checkbox</span>
+            </button>
+            <button class="spectrum-ActionButton" @click="insertItem('SLIDER')">
+                <span class="spectrum-ActionButton-label">Slider</span>
+            </button>
+            <button class="spectrum-ActionButton" @click="insertItem('SELECT')">
+                <span class="spectrum-ActionButton-label">Dropdown/Select</span>
+            </button>
         </aside>
         <main>
             <div class="spectrum-Dialog spectrum-Dialog is-open cssdocs-Dialog" :width="dialogWidth">
@@ -68,15 +81,19 @@
                         <div v-if="element.type === 4" class="width100 selectWrapper">
                             <label :for="element.id" class="spectrum-FieldLabel">{{element.label}}</label>
                             <div class="selectWrapper">
-                                <select class="spectrum-FieldButton spectrum-Dropdown-trigger" :value="element.value" :id="element.id" :name="element.id">
-                                    <option v-for="(element,index) in element.options" :key="index" :value="element.value">{{element.label}}</option>
+                                <select class="spectrum-FieldButton spectrum-Dropdown-trigger" :value="element.value"
+                                        :id="element.id" :name="element.id">
+                                    <option v-for="(element,index) in element.options" :key="index"
+                                            :value="element.value">{{element.label}}
+                                    </option>
                                 </select>
-                                <svg class="spectrum-Icon spectrum-UIIcon-ChevronDownMedium spectrum-Dropdown-icon" focusable="false" aria-hidden="true">
+                                <svg class="spectrum-Icon spectrum-UIIcon-ChevronDownMedium spectrum-Dropdown-icon"
+                                     focusable="false" aria-hidden="true">
                                     <use xlink:href="#spectrum-css-icon-ChevronDownMedium"></use>
                                 </svg>
                             </div>
                         </div>
-                        <div class="spectrum-Slider" v-if="element.type === 5">
+                        <div class="spectrum-Slider spectrum-Slider--filled" v-if="element.type === 5">
                             <div class="spectrum-Slider-labelContainer">
                                 <label class="spectrum-Slider-label" id="spectrum-Slider-label-8"
                                        for="spectrum-Slider-input-8">{{element.label}}</label>
@@ -85,12 +102,16 @@
                                 </div>
                             </div>
                             <div class="spectrum-Slider-controls">
-                                <div class="spectrum-Slider-track" v-bind:style="{ width: (element.value/element.htmlAttributes.max*100) + '%'}"></div>
-                                <div class="spectrum-Slider-handle" v-bind:style="{ left: (element.value/element.htmlAttributes.max*100) + '%'}">
-                                    <input type="range" class="spectrum-Slider-input" :value="element.value" :min="element.htmlAttributes.min"
+                                <div class="spectrum-Slider-track"
+                                     v-bind:style="{ width: (element.value/element.htmlAttributes.max*100) + '%'}"></div>
+                                <div class="spectrum-Slider-handle"
+                                     v-bind:style="{ left: (element.value/element.htmlAttributes.max*100) + '%'}">
+                                    <input type="range" class="spectrum-Slider-input" :value="element.value"
+                                           :min="element.htmlAttributes.min"
                                            :max="element.htmlAttributes.max" id="spectrum-Slider-input-8">
                                 </div>
-                                <div class="spectrum-Slider-track" v-bind:style="{ width: (100 - element.value/element.htmlAttributes.max*100) + '%'}"></div>
+                                <div class="spectrum-Slider-track"
+                                     v-bind:style="{ width: (100 - element.value/element.htmlAttributes.max*100) + '%'}"></div>
                             </div>
                         </div>
                         <hr class="spectrum-Rule spectrum-Rule--medium" v-if="element.type === 7">
@@ -117,11 +138,24 @@
                 </div>
             </div>
         </main>
+
+        <div id="codeDialog" class="spectrum-Dialog spectrum-Dialog--alert is-open">
+            <div class="spectrum-Dialog-header">
+                <h2 class="spectrum-Dialog-title">The CSS code</h2>
+            </div>
+            <div class="spectrum-Dialog-content">
+                <pre onkeydown="event.preventDefault" onkeyup="event.preventDefault()" onkeypress="event.preventDefault()" contenteditable="true" onclick="requestAnimationFrame(()=>document.execCommand('selectall',null,false))"><code>{{code}}</code></pre>
+            </div>
+            <div class="spectrum-Dialog-footer">
+                <button class="spectrum-Button spectrum-Button--secondary" onclick="document.getElementById('codeDialog').className='spectrum-Dialog spectrum-Dialog--alert'">Close</button>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import Editor from "@/components/Editor";
+    import beautify from "js-beautify";
 
     class DialogHelper {
         /**
@@ -194,6 +228,7 @@
         components: {Editor},
         data: () => {
             return {
+                id: 'MyDialog',
                 title: 'Hello xd-dialog-helper!',
                 okButtonText: 'Insert',
                 cancelButtonText: 'Cancel',
@@ -245,11 +280,31 @@
                         id: 'selectBox',
                         label: 'Message',
                         options: [
-                            { value: 'opt1', label: 'Option 1' },
-                            { value: 'opt2', label: 'Option 2' },
+                            {value: 'opt1', label: 'Option 1'},
+                            {value: 'opt2', label: 'Option 2'},
                         ]
                     },
                 ]
+            }
+        },
+        computed: {
+            code: function() {
+                return beautify(`const dialogHelper = require('xd-dialog-helper');
+
+async function show${this.id}() {
+    try {
+        const results = dialogHelper.showDialog(${JSON.stringify(this.id)}, ${JSON.stringify(this.title)}, ${JSON.stringify(this.contents)}, [
+            okButtonText: ${JSON.stringify(this.okButtonText)},
+            cancelButtonText: ${JSON.stringify(this.cancelButtonText)}
+        ]);
+
+        // Do something with the results here...
+    } catch (e) {
+        // Dialog got canceled
+    }
+}
+
+module.exports = show${this.id};`, {});
             }
         },
         methods: {
@@ -257,22 +312,57 @@
                 if (type === 'TEXT') {
                     this.contents.push({
                         type: DialogHelper.TEXT,
-                        id: 'myText',
+                        id: 'text-' + Date.now(),
                         label: 'Lorem Ipsum'
                     });
-                } else if (type === 'TEXT_INPUT') {
+                } else if (type === 'HEADER') {
+                    this.contents.push({
+                        type: DialogHelper.HEADER,
+                        id: 'header-' + Date.now(),
+                        label: 'New section'
+                    });
+                }  else if (type === 'TEXT_INPUT') {
                     this.contents.push({
                         type: DialogHelper.TEXT_INPUT,
-                        id: 'myTextInput',
+                        id: 'input-' + Date.now(),
                         label: 'Write something:',
                         value: 'Hello world!'
                     });
                 } else if (type === 'CHECKBOX') {
                     this.contents.push({
                         type: DialogHelper.CHECKBOX,
-                        id: 'myTextInput',
+                        id: 'checkbox-' + Date.now(),
                         label: 'I agree',
                         value: true
+                    });
+                } else if (type === 'TEXT_AREA') {
+                    this.contents.push({
+                        type: DialogHelper.CHECKBOX,
+                        id: 'myTextInput',
+                        label: 'Message',
+                        value: true
+                    });
+                } else if (type === 'SELECT') {
+                    this.contents.push({
+                        type: DialogHelper.SELECT,
+                        id: 'select-' + Date.now(),
+                        label: 'Choose one:',
+                        options: [
+                            {value: 'opt1', label: 'Option 1'},
+                            {value: 'opt2', label: 'Option 2'},
+                        ]
+                    });
+                } else if (type === 'SLIDER') {
+                    this.contents.push({
+                        type: DialogHelper.SLIDER,
+                        id: 'slider-' + Date.now(),
+                        label: 'How much',
+                        htmlAttributes: {
+                            min: 0,
+                            max: 100
+                        },
+                        unit: '%',
+                        value: 60
                     });
                 }
             }
@@ -299,11 +389,18 @@
         > aside {
             > *:not(.spectrum-Checkbox),
             :not(.spectrum-Checkbox) > *:not(svg) {
-                width: 100%;
+                &.spectrum-Textfield,
+                &.spectrum-Form-item,
+                &.spectrum-FieldLabel {
+                    width: 100%;
+                }
+
+                //width: 100%;
             }
 
-
-
+            .spectrum-Form {
+                width: 100%;
+            }
 
             padding: 40px;
 
@@ -324,11 +421,9 @@
 
             .spectrum-Dialog, .spectrum-Dialog.is-open {
                 position: absolute;
-                //transform: none;
                 margin: 0;
                 width: 360px;
                 box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
-                //left: unset;
             }
 
             a {

@@ -2,17 +2,15 @@
     <div class="spectrum-Well">
         <h4>{{index+1}}.: <code>{{elementType()}}</code>#{{element.id}}</h4>
 
-        <div class="spectrum-QuickActions spectrum-QuickActions--textOnly is-open">
-            <button class="spectrum-ActionButton spectrum-ActionButton--quiet" @click="up">
-                <span class="spectrum-ActionButton-label">Up</span>
-            </button>
-            <button class="spectrum-ActionButton spectrum-ActionButton--quiet" @click="down">
-                <span class="spectrum-ActionButton-label">Down</span>
-            </button>
-            <button class="spectrum-ActionButton spectrum-ActionButton--quiet" @click="deleteElement">
-                <span class="spectrum-ActionButton-label">Delete</span>
-            </button>
-        </div>
+        <button class="spectrum-ActionButton" @click="up">
+            <span class="spectrum-ActionButton-label">Up</span>
+        </button>
+        <button class="spectrum-ActionButton" @click="down">
+            <span class="spectrum-ActionButton-label">Down</span>
+        </button>
+        <button class="spectrum-ActionButton" @click="deleteElement">
+            <span class="spectrum-ActionButton-label">Delete</span>
+        </button>
 
         <form class="spectrum-Form">
             <!-- ID: -->
@@ -39,7 +37,7 @@
                     <label :for="element.id + '-editor'" class="spectrum-FieldLabel">Initial value:</label>
                     <div class="selectWrapper">
                         <select class="spectrum-FieldButton spectrum-Dropdown-trigger" v-model="element.value" :id="element.id + '-editor'" :name="element.id + '-editor'">
-                            <option value="">-- none set --</option>
+                            <option value="undefined">-- none set --</option>
                             <option v-for="(element,index) in element.options" :key="index" :value="element.value">{{element.label}}</option>
                         </select>
                         <svg class="spectrum-Icon spectrum-UIIcon-ChevronDownMedium spectrum-Dropdown-icon" focusable="false" aria-hidden="true">
@@ -73,7 +71,7 @@
                     <span class="spectrum-Checkbox-label">Initially set</span>
                 </label>
             </div>
-            <!-- Min & Max: -->
+            <!-- Unit, Min & Max: -->
             <div class="spectrum-Form-item" v-if="inList(element.type, [5,6])">
                 <label class="spectrum-FieldLabel">Minimum value:</label>
                 <input v-model="element.htmlAttributes.min" type="number" class="spectrum-Textfield">
@@ -81,6 +79,10 @@
             <div class="spectrum-Form-item" v-if="inList(element.type, [5,6])">
                 <label class="spectrum-FieldLabel">Maximum value:</label>
                 <input v-model="element.htmlAttributes.max" type="number" class="spectrum-Textfield">
+            </div>
+            <div class="spectrum-Form-item" v-if="inList(element.type, [5,6])">
+                <label class="spectrum-FieldLabel">Unit name:</label>
+                <input v-model="element.unit" type="text" class="spectrum-Textfield">
             </div>
         </form>
     </div>
