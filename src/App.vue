@@ -35,9 +35,10 @@
             </button>
         </aside>
         <aside>
-            <editor v-for="(element, index) in contents" :key="index" :element="element" :index="index"
-                    :array="contents"></editor>
-
+            <transition-group tag="div" class="container" name="flip-list">
+                <editor class="list-item" v-for="(element, index) in contents" :key="element" :element="element" :index="index"
+                        :array="contents"></editor>
+            </transition-group>
             <h2>Append element:</h2>
 
             <button class="spectrum-ActionButton" @click="insertItem('HEADER')">
@@ -432,5 +433,16 @@ module.exports = show${this.id};`, {});
             top: 0;
             right: 10px;
         }
+    }
+
+    .flip-list-move {
+        transition: transform 1s;
+    }
+
+    .flip-list-enter-active, .flip-list-leave-active {
+        transition: all 0.4s;
+    }
+    .flip-list-enter, .flip-list-leave-to /* .list-leave-active below version 2.1.8 */ {
+        opacity: 0;
     }
 </style>
