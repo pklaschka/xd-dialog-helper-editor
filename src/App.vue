@@ -158,7 +158,7 @@
 
         <div id="codeDialog" class="spectrum-Dialog spectrum-Dialog--alert">
             <div class="spectrum-Dialog-header">
-                <h2 class="spectrum-Dialog-title">The CSS code</h2>
+                <h2 class="spectrum-Dialog-title">The JS code</h2>
             </div>
             <div class="spectrum-Dialog-content">
                 <pre onkeyup="event.preventDefault()" onkeypress="event.preventDefault()" contenteditable="true"
