@@ -269,7 +269,7 @@
 
 async function show${this.id}() {
     try {
-        const results = DialogHelper.showDialog(${JSON.stringify(this.id)}, ${JSON.stringify(this.title)}, ${JSON.stringify(this.contents)}, {
+        const results = await DialogHelper.showDialog(${JSON.stringify(this.id)}, ${JSON.stringify(this.title)}, ${JSON.stringify(this.contents)}, {
             okButtonText: ${JSON.stringify(this.okButtonText)},
             cancelButtonText: ${JSON.stringify(this.cancelButtonText)}
         });
