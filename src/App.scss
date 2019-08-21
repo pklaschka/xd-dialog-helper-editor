@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+#app {
+  display: flex;
+  flex-direction: row;
+  > aside {
+      img {
+        width: 25%;
+      }
+
+    .spectrum-Link {
+      cursor: pointer;
+    }
+
+      > *:not(.spectrum-Checkbox),
+      :not(.spectrum-Checkbox) > *:not(svg) {
+          &.spectrum-Textfield,
+          &.spectrum-Form-item,
+          &.spectrum-FieldLabel {
+              width: 100%;
+          }
+          //width: 100%;
+      }
+      .spectrum-Form {
+          width: 100%;
+      }
+      padding: 40px;
+      height: 100vh;
+      min-width: 400px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+  }
+  > main {
+      background: #565656;
+      min-height: 100vh;
+      position: relative;
+      width: 100%;
+      .spectrum-Dialog, .spectrum-Dialog.is-open {
+          position: absolute;
+          margin: 0;
+          width: 360px;
+      }
+      a {
+          display: block;
+      }
+  }
+}
+.spectrum-Dialog {
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+  border: none;
+
+  &#codeDialog:before {
+    content: '';
+    background: #2D4E64;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1em;
+    border-radius: 4px 4px 0 0;
+  }
+}
+textarea {
+  resize: vertical;
+}
+.contentElement + .contentElement {
+  margin-top: 0.5em;
+}
+.contentElement .width100 {
+  &, *:not(svg) {
+      width: 100%;
+  }
+}
+.selectWrapper {
+  position: relative;
+  > svg {
+      position: absolute;
+      pointer-events: none;
+      top: 0;
+      right: 10px;
+  }
+}
+.flip-list-move {
+  transition: transform 1s;
+}
+.flip-list-enter-active, .flip-list-leave-active {
+  transition: all 0.4s;
+}
+.flip-list-enter, .flip-list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
