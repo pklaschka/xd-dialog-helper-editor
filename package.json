@@ -2,6 +2,7 @@
   "name": "xd-dialog-helper-editor",
   "version": "2.0.0",
   "private": true,
+  "homepage": "https://xd-dialog-helper.pabloklaschka.de/editor/",
   "dependencies": {
     "@types/jest": "24.0.15",
     "@types/node": "12.6.1",
