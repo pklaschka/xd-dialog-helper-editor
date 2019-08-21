@@ -1,27 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link href="<%= BASE_URL %>favicon.ico" rel="icon">
-    <title>xd-dialog-helper-editor</title>
-</head>
-<body class="spectrum--medium spectrum">
-<noscript>
-    <strong>We're sorry but vue-dialog-helper-geneartor doesn't work properly without JavaScript enabled. Please enable
-        it to continue.</strong>
-</noscript>
-<div id="app"></div>
-<script src="icons/loadIcons.js"></script>
-<script>
-    loadIcons('icons/spectrum-css-icons-medium.svg', (error, svg) => {
-        if (error)
-            console.log(error, svg);
-        else
-            console.log(svg);
-        document.body.appendChild(svg);
-    });
-</script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <base href="/editor/" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>xd-dialog-helper WYSIWYG-Editor</title>
+  </head>
+  <body class="spectrum--medium spectrum">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root" class="spectrum spectrum-Typography"></div>
+  </body>
 </html>
